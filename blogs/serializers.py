@@ -6,7 +6,7 @@ from .models import Blog, Comment
 
 class BlogSerializer(serializers.ModelSerializer):
     comments = serializers.PrimaryKeyRelatedField(
-        many=True, queryset=Comment.objects.all()
+        many=True, queryset=Comment.objects.all(),required=False
     )
     author = serializers.ReadOnlyField(source="author.username")
 
