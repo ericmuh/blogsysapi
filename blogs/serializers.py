@@ -23,11 +23,14 @@ class CommentSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    blogs = serializers.PrimaryKeyRelatedField(many=True, queryset=Blog.objects.all())
+    blogs = serializers.PrimaryKeyRelatedField(many=True, queryset=Blog.objects.all(),
+required=False
+)
     comments = serializers.PrimaryKeyRelatedField(
-        many=True, queryset=Comment.objects.all()
+        many=True, queryset=Comment.objects.all(),
+        required=False
     )
 
     class Meta:
         model = User
-        fields = ["id", "username", "blogs", "comments"]
+        fields = ["id", "username", "password" "blogs", "comments"]
