@@ -71,7 +71,7 @@ def blog_detail(request, pk):
 # ! BLOG VIEWS
 class BlogList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly,  IsOwnerOrReadOnly]
-    queryset = Comment.objects.all()
+    queryset = Blog.objects.all()
     serializer_class = BlogSerializer
 
     def perform_create(self, serializer):
