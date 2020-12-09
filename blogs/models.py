@@ -5,7 +5,7 @@ from django.db import models
 
 
 class Blog(models.Model):
-    name= models.CharField(max_length=30)
+    title= models.CharField(max_length=30)
     subject = models.TextField(max_length=2000)
     author = models.ForeignKey(User, related_name="blogs", on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -16,7 +16,7 @@ class Blog(models.Model):
 
 class Comment(models.Model):
     comment = models.TextField(max_length=450)
-    blog = models.ForeignKey(Blog, related_name="blog_comments", on_delete=models.CASCADE)
+    blog = models.ForeignKey(Blog, related_name="comments", on_delete=models.CASCADE)
     owner = models.ForeignKey(User, related_name="comment", on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 

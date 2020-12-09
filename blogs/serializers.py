@@ -5,12 +5,15 @@ from .models import Blog, Comment
 
 
 class BlogSerializer(serializers.ModelSerializer):
+    comments =serializers.PrimaryKeyRelatedField(many=True,read_only=True)
     class Meta:
         model = Blog
-        fields = ["name", "subject", "author", "created_at"]
+        fields = ["title", "subject", "author", "comments", "created_at"]
 
 
 class CommentSerializer(serializers.ModelSerializer):
+    owner = serializers.ReadOnlyField(source="owner.username")
+    owner = serializers.PrimaryKeyRelatedField(many=False, read_only=True)
     class Meta:
         model = Comment
         fields = ["comment", "blog", "owner", "created_at"]
